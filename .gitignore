@@ -1,0 +1,9 @@
+node_modules/
+cypress/videos/
+cypress/screenshots/
+coverage/
+*.log
+*.env
+.DS_Store
+cypress/fixtures/randomvalues.json
+.vscode/settings.json

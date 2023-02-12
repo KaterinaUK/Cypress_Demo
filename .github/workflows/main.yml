@@ -1,0 +1,48 @@
+name: Cypress e2e Tests
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push request events but only for the main branch
+  push:
+    branches:
+      - "main"
+  schedule:
+    - cron: "0 09 * * *" # At 09:00 everyday
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "build"
+  test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # https://github.com/cypress-io/cypress-docker-images
+    container: cypress/browsers:node18.12.0-chrome106-ff106
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        # run 3 copies of the current job in parallel, cypress will run all the tests in parallel
+        # on those machines, to add more just add more containers to the matrix
+        containers: ["machine1", "machine2", "machine3"]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
+        uses: actions/checkout@v3
+      # uses the Cypress github action
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          browser: chrome
+          env: true
+          config-file: cypress.config.ts
+          spec: cypress/**/*
+        env:
+          # for future use we will pass the Dashboard record key as an environment variable
+          # email address and password to login
+          CYPRESS_EMAIL_ADDRESS: ${{ secrets.CYPRESS_EMAIL_ADDRESS }}
+          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
