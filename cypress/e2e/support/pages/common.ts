@@ -19,6 +19,7 @@ export default class CommonPage {
   };
 
   clickOnPeopleTab() {
+    this.elements.headerPeopleTitle().should("be.visible");
     this.elements.headerPeopleTitle().click();
   }
 

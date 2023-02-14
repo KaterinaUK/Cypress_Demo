@@ -59,7 +59,6 @@ When("I navigate to the edit attributes screen", () => {
 // ****************************************
 When("I perform changes to the first person in the list", () => {
   commonPage.clickOnPeopleTab();
-  commonPage.clickOnPeopleTab();
   commonPage.enterSearchInput();
   commonPage.clickSearchButton();
   commonPage.selectSearchResult();
@@ -83,7 +82,6 @@ When("I verify that the changes were saved", () => {
 // * Output       : The person is deleted.
 // ****************************************
 When("I delete the first person in the list", () => {
-  commonPage.clickOnPeopleTab();
   commonPage.clickOnPeopleTab();
   commonPage.enterSearchInput();
   commonPage.clickSearchButton();

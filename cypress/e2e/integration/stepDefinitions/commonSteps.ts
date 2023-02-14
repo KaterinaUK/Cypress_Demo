@@ -77,5 +77,6 @@ Then(
     commonPage.enterRandomEmail();
     addPersonPage.verifyUnsavedChangesMessage();
     addPersonPage.clickOnSaveChangesButton();
+    addPersonPage.verifyNewEmailWasCreated();
   }
 );
