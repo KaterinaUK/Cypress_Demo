@@ -18,6 +18,7 @@ Then(
     segmentsPage.clickCreateSegmentButton();
     segmentsPage.enterSegmentName(segmentName);
     segmentsPage.enterSegmentDescription(description);
+    //save the segment name as an alias to be used later
     cy.wrap(segmentName).as("segmentName");
     segmentsPage.clickTagsDropdown();
     segmentsPage.createRandomNewTag();
