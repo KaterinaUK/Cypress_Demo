@@ -20,7 +20,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@testing-library/cypress": "^9.0.0",
     "@types/testing-library__cypress": "^5.0.9",
-    "cypress": "^12.5.1"
+    "cypress": "12.9.0"
   },
   "dependencies": {
     "chai": "^4.3.7",
