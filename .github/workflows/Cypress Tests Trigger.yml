@@ -1,0 +1,19 @@
+name: Cypress Tests Trigger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Trigger Cypress tests
+        env:
+          GITHUB_TOKEN: ${{ secrets.TEST_AUTOMATION_PAT }}
+        run: |
+          curl -u KaterinaUK:$GITHUB_TOKEN -X POST -H "Accept: application/vnd.github.v3+json" https://github.com/customerio/cypress_e2e/actions/workflows/CIDispatch.yml/dispatches -d '{"ref":"main", "inputs": { "name": "Cypress Tests" }}'
