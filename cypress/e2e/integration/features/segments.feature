@@ -27,3 +27,5 @@ Feature: Segments actions
         Examples:
             | description         | language |
             | This my description | English  |
+
+ #cypress ci trigger test
